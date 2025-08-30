@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cambridge Museum of Technology</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    #home {
+      background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    #about {
+      background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    #blog, #events {
+      background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1505664194779-8beaceb93744?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+    #videos, #community {
+      background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url('https://images.unsplash.com/photo-1516321310767-73f0b7f3d9c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // Smooth Scroll Function
+    const scrollToSection = (sectionId) => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    // Navigation Component
+    const Navbar = () => (
+      <nav className="bg-gradient-to-r from-blue-800 to-teal-700 text-white p-4 sticky top-0 z-10">
+        <div className="container mx-auto flex justify-between items-center">
+          <h1 className="text-2xl font-bold">Cambridge Museum of Technology</h1>
+          <div className="space-x-4">
+            <button onClick={() => scrollToSection('home')} className="hover:text-yellow-300">Home</button>
+            <button onClick={() => scrollToSection('about')} className="hover:text-yellow-300">About</button>
+            <button onClick={() => scrollToSection('blog')} className="hover:text-yellow-300">Blog</button>
+            <button onClick={() => scrollToSection('videos')} className="hover:text-yellow-300">Videos</button>
+            <button onClick={() => scrollToSection('events')} className="hover:text-yellow-300">Events</button>
+            <button onClick={() => scrollToSection('community')} className="hover:text-yellow-300">Community</button>
+          </div>
+        </div>
+      </nav>
+    );
+
+    // Homepage Component
+    const Homepage = () => (
+      <section id="home" className="py-16 text-white">
+        <div className="container mx-auto text-center px-4">
+          <h2 className="text-4xl font-bold mb-4 drop-shadow-lg">Discover the Heart of Innovation</h2>
+          <p className="text-lg mb-8 max-w-2xl mx-auto drop-shadow-xl font-medium">
+            The Cambridge Museum of Technology celebrates the ingenuity that shaped our world. 
+            Explore our exhibits, engage with history, and be inspired by the stories of technology’s past.
+          </p>
+          <a href="/visit.html" target="_blank" rel="noopener noreferrer">
+            <button className="bg-teal-600 text-white px-6 py-3 rounded-full hover:bg-teal-700 shadow-lg border border-white">
+              Plan Your Visit
+            </button>
+          </a>
+          <div className="mt-12">
+            <h3 className="text-2xl font-semibold mb-4 drop-shadow-lg">Artifact of the Week</h3>
+            <div className="max-w-md mx-auto bg-white bg-opacity-90 p-6 rounded-lg shadow-lg">
+              <img src="https://images.unsplash.com/photo-1615873968403-89e068629f10?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Steam Engine" className="w-full h-48 object-cover rounded-md mb-4" />
+              <h4 className="text-xl font-bold text-gray-800">The Steam Engine Model</h4>
+              <p className="text-gray-600">
+                This 19th-century steam engine model showcases the power that drove the Industrial Revolution in Cambridge.
+              </p>
+              <button onClick={() => scrollToSection('about')} className="text-teal-600 hover:underline">Learn More</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    // About Page Component
+    const About = () => (
+      <section id="about" className="py-16 text-gray-800">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8 drop-shadow">About the Museum</h2>
+          <div className="max-w-3xl mx-auto bg-white bg-opacity-90 p-6 rounded-lg shadow-lg">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Museum Building" className="w-full h-48 object-cover rounded-md mb-4" />
+            <p className="text-lg mb-6">
+              Founded to preserve Cambridge’s rich technological heritage, the Cambridge Museum of Technology is a vibrant hub 
+              where history meets innovation. From steam engines to early computing, our exhibits tell the story of human ingenuity.
+            </p>
+            <p className="text-lg">
+              We are committed to community engagement, offering workshops, lectures, and hands-on exhibits to inspire the next 
+              generation of innovators. Join us in celebrating the past and shaping the future.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+
+    // Blog Section Component
+    const Blog = () => (
+      <section id="blog" className="py-16 text-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8 drop-shadow">Stories of Innovation</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { 
+                title: "5 Inventions That Changed Cambridge", 
+                excerpt: "From the bicycle to early computers, discover the innovations that put Cambridge on the map.",
+                image: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                link: "/blog-5-inventions.html"
+              },
+              { 
+                title: "Unsung Heroes of Technology", 
+                excerpt: "Meet the forgotten inventors whose work shaped modern technology.",
+                image: "https://images.unsplash.com/photo-1516321310767-73f0b7f3d9c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                link: "/blog-unsung-heroes.html"
+              },
+              { 
+                title: "How Steam Power Transformed Cambridge", 
+                excerpt: "Explore how steam engines revolutionized industry in the 19th century.",
+                image: "https://images.unsplash.com/photo-1581091012184-7af6f7a6e6e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                link: "/blog-steam-power.html"
+              },
+            ].map((post, index) => (
+              <div key={index} className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg">
+                <img src={post.image} alt={post.title} className="w-full h-40 object-cover rounded-md mb-4" />
+                <h3 className="text-xl font-semibold mb-2 text-gray-800">{post.title}</h3>
+                <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                <a href={post.link} target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:underline">Read More</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    // Video Gallery Component
+    const VideoGallery = () => (
+      <section id="videos" className="py-16">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 drop-shadow">Video Gallery</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg">
+              <h3 className="text-xl font-semibold mb-2 text-gray-800">Curator Interview: The Story of Steam</h3>
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/0fJBk1s1W1E" title="Curator Interview" frameBorder="0" allowFullScreen></iframe>
+            </div>
+            <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg">
+              <h3 className="text-xl font-semibold mb-2 text-gray-800">Behind the Scenes: Restoring a Steam Engine</h3>
+              <iframe width="100%" height="315" src="https://www.youtube.com/embed/8Q7gP6jD6F8" title="Behind the Scenes" frameBorder="0" allowFullScreen></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    // Events Page Component
+    const Events = () => (
+      <section id="events" className="py-16 text-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8 drop-shadow">Upcoming Events</h2>
+          <div className="space-y-6">
+            {[
+              { 
+                date: "June 10, 2025", 
+                title: "Steam Engine Workshop", 
+                desc: "Learn how steam engines work with hands-on activities.",
+                image: "https://images.unsplash.com/photo-1581091012184-7af6f7a6e6e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                rsvpLink: "/event-steam-workshop.html"
+              },
+              { 
+                date: "June 15, 2025", 
+                title: "Tech History Lecture", 
+                desc: "A talk on Cambridge’s role in computing history.",
+                image: "https://images.unsplash.com/photo-1516321310767-73f0b7f3d9c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                rsvpLink: "/event-tech-lecture.html"
+              },
+            ].map((event, index) => (
+              <div key={index} className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg flex flex-col md:flex-row items-center">
+                <img src={event.image} alt={event.title} className="w-full md:w-1/4 h-32 object-cover rounded-md mb-4 md:mb-0 md:mr-4" />
+                <div className="flex-1">
+                  <h3 className="text-xl font-semibold text-gray-800">{event.title}</h3>
+                  <p className="text-gray-600">{event.date} - {event.desc}</p>
+                </div>
+                <a href={event.rsvpLink} target="_blank" rel="noopener noreferrer" className="bg-teal-500 text-white px-4 py-2 rounded-full hover:bg-teal-600 mt-4 md:mt-0">RSVP</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    // Community Page Component
+    const Community = () => {
+      const handlePollVote = (invention) => {
+        alert(`You voted for: ${invention}`);
+      };
+
+      return (
+        <section id="community" className="py-16">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 drop-shadow">Join Our Community</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Volunteers" className="w-full h-40 object-cover rounded-md mb-4" />
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">Volunteer Opportunities</h3>
+                <p className="text-gray-600 mb-4">
+                  Become a part of our mission! Volunteers help with events, guided tours, and exhibit maintenance.
+                </p>
+                <a href="/volunteer.html" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:underline">Apply Now</a>
+              </div>
+              <div className="bg-white bg-opacity-90 p-6 rounded-lg shadow-lg">
+                <img src="https://images.unsplash.com/photo-1516321310767-73f0b7f3d9c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Community Showcase" className="w-full h-40 object-cover rounded-md mb-4" />
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">Share Your Story</h3>
+                <p className="text-gray-600 mb-4">
+                  Have a tech story or artifact to share? Submit your content to be featured in our community showcase.
+                </p>
+                <a href="/submit-content.html" target="_blank" rel="noopener noreferrer" className="text-teal-600 hover:underline">Submit Content</a>
+              </div>
+            </div>
+            <div className="mt-8">
+              <h3 className="text-xl font-semibold mb-4 text-center text-gray-800 drop-shadow">Interactive Poll</h3>
+              <p className="text-center mb-4 text-gray-800">Which invention inspires you most?</p>
+              <div className="flex justify-center space-x-4 flex-wrap">
+                <button onClick={() => handlePollVote('Steam Engine')} className="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600 mb-2">Steam Engine</button>
+                <button onClick={() => handlePollVote('Early Computer')} className="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600 mb-2">Early Computer</button>
+                <button onClick={() => handlePollVote('Bicycle')} className="bg-teal-500 text-white px-4 py-2 rounded hover:bg-teal-600 mb-2">Bicycle</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    // Newsletter Signup Component
+    const Newsletter = () => {
+      const [email, setEmail] = useState("");
+      const [interest, setInterest] = useState("");
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        alert(`Subscribed with ${email} for ${interest} updates!`);
+      };
+      return (
+        <section className="py-16 bg-gradient-to-r from-blue-700 to-teal-600 text-white">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-4 drop-shadow">Stay Connected</h2>
+            <p className="mb-6">Join our newsletter for updates on exhibits, events, and more.</p>
+            <div className="max-w-md mx-auto">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
+                className="w-full p-3 mb-4 rounded text-gray-800"
+              />
+              <select
+                value={interest}
+                onChange={(e) => setInterest(e.target.value)}
+                className="w-full p-3 mb-4 rounded text-gray-800"
+              >
+                <option value="">Select Interest</option>
+                <option value="Exhibits">Exhibits</option>
+                <option value="Events">Events</option>
+                <option value="History">Tech History</option>
+              </select>
+              <button
+                onClick={handleSubmit}
+                className="bg-yellow-400 text-gray-800 px-6 py-3 rounded-full hover:bg-yellow-500 shadow-lg"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    // Social Media Feed Component
+    const SocialMedia = () => (
+      <section className="py-16 bg-gray-100">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-8 text-gray-800 drop-shadow">Follow Us</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              <a href="https://instagram.com/cambridgemuseumoftech" target="_blank" rel="noopener noreferrer">
+                <img src="https://images.unsplash.com/photo-1516321310767-73f0b7f3d9c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Instagram Post" className="w-full h-40 object-cover rounded-md mb-4" />
+                <i className="fab fa-instagram text-2xl mb-2 text-teal-600"></i>
+                <p className="text-gray-600">Latest Instagram post: A glimpse of our steam engine exhibit!</p>
+              </a>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              <a href="https://facebook.com/cambridgemuseumoftech" target="_blank" rel="noopener noreferrer">
+                <img src="https://images.unsplash.com/photo-1581091012184-7af6f7a6e6e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Facebook Post" className="w-full h-40 object-cover rounded-md mb-4" />
+                <i className="fab fa-facebook text-2xl mb-2 text-blue-600"></i>
+                <p className="text-gray-600">Latest Facebook post: Join our upcoming workshop!</p>
+              </a>
+            </div>
+            <div className="bg-white p-4 rounded-lg shadow-lg">
+              <a href="https://twitter.com/cambridgemuseumoftech" target="_blank" rel="noopener noreferrer">
+                <img src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Twitter Post" className="w-full h-40 object-cover rounded-md mb-4" />
+                <i className="fab fa-twitter text-2xl mb-2 text-blue-400"></i>
+                <p className="text-gray-600">Latest Twitter post: Celebrating Cambridge’s tech heritage!</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    // Footer Component
+    const Footer = () => (
+      <footer className="bg-gradient-to-r from-blue-700 to-teal-600 text-white py-8">
+        <div className="container mx-auto px-4 text-center">
+          <p>© 2025 Cambridge Museum of Technology. All rights reserved.</p>
+          <div className="mt-4 space-x-4">
+            <a href="/contact.html" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300">Contact Us</a>
+            <a href="/privacy.html" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300">Privacy Policy</a>
+            <a href="/terms.html" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-300">Terms of Service</a>
+          </div>
+        </div>
+      </footer>
+    );
+
+    // Main App Component
+    const App = () => (
+      <div>
+        <Navbar />
+        <Homepage />
+        <About />
+        <Blog />
+        <VideoGallery />
+        <Events />
+        <Community />
+        <Newsletter />
+        <SocialMedia />
+        <Footer />
+      </div>
+    );
+
+    // Render the App
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
